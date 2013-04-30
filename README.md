@@ -19,16 +19,15 @@ Examples
 
 You can use the `dirtree` function in a class to enumerate all required directories if needed.
 
-    class { 'dirtree_example':
-      # Puppet[:vardir] = /var/lib/puppet
-      $dirtree = dirtree(Puppet[:vardir])
+    class dirtree {
+      # rubysitedir = /usr/lib/ruby/site_ruby/1.8
+      $dirtree = dirtree($::rubysitedir)
 
-      # $dirtree = ['/var', '/var/lib', '/var/lib/puppet']
+      # $dirtree = ['/usr', '/usr/lib', '/usr/lib/ruby', '/usr/lib/ruby/site_ruby', '/usr/lib/ruby/site_ruby/1.8',]
       file { $dirtree:
         ensure => present,
       }
     }
-
 
 Support
 -------
