@@ -32,10 +32,12 @@ and will return an array of the tree containing all the folders of that path.
     sep = is_posix ? '/' : '\\'
     result = []
 
-    # If the last character is the separator, chop it off!
+    # If the last character is the separator, discard it
     path[-1, 1] == sep ? path.chop! : nil
 
     # Start trimming and pushing to the new array
+    # If the path is a posix path, the string will be empty when done parsing
+    # If the path is a windows path, the string will have the drive letter and a colon when done parsing.
     while ( path != '' and is_posix ) or ( path.length > 2 and is_windows )
       result.unshift(path)
       path = path[0..path.rindex(sep)].chop
