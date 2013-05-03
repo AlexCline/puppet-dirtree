@@ -29,6 +29,11 @@ You can use the `dirtree` function in a class to enumerate all required director
       }
     }
 
+Note: Obviously, having duplicate File resources could be a problem with this.  I've submitted a patch 
+(https://github.com/puppetlabs/puppetlabs-stdlib/pull/152) to the `puppetlabs-stdlib` module to allow arrays
+to be passed into the `ensure_resource` function.  You can patch the stdlib module if you can't wait for the patch to
+be approved.
+
 Support
 -------
 
