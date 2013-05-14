@@ -3,7 +3,5 @@ class dirtree {
   $dirtree = dirtree($::rubysitedir)
 
   # $dirtree = ['/usr', '/usr/lib', '/usr/lib/ruby', '/usr/lib/ruby/site_ruby', '/usr/lib/ruby/site_ruby/1.8',]
-  file { $dirtree:
-    ensure => present,
-  }
+  ensure_resource('dir', $dirtree, {'ensure' => 'directory'})
 }
