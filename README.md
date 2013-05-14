@@ -24,15 +24,11 @@ You can use the `dirtree` function in a class to enumerate all required director
       $dirtree = dirtree($::rubysitedir)
 
       # $dirtree = ['/usr', '/usr/lib', '/usr/lib/ruby', '/usr/lib/ruby/site_ruby', '/usr/lib/ruby/site_ruby/1.8',]
-      file { $dirtree:
-        ensure => present,
-      }
+      ensure_resource('file', $dirtree, {'ensure' => 'present'})
+      # With the puppetlabs-stdlib 1.4.0 module, the ensure_resource function accepts an array, which will
+      # create new resources with the names specified if they don't already exist.
     }
 
-Note: Obviously, having duplicate File resources could be a problem with this.  I've submitted a patch 
-(https://github.com/puppetlabs/puppetlabs-stdlib/pull/152) to the `puppetlabs-stdlib` module to allow arrays
-to be passed into the `ensure_resource` function.  You can patch the stdlib module if you can't wait for the patch to
-be approved.
 
 Support
 -------
