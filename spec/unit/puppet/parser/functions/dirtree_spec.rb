@@ -17,11 +17,11 @@ describe "the dirtree function" do
   end
 
   it "should raise a ParseError if the second argument is not a String" do
-    lambda { scope.function_dirtree([]) }.should( raise_error(Puppet::ParseError) )
+    lambda { scope.function_dirtree(['/usr/share/puppet', 1]) }.should( raise_error(Puppet::ParseError) )
   end
 
   it "should raise a ParseError if the second argument is not an absolute path" do
-    lambda { scope.function_dirtree([]) }.should( raise_error(Puppet::ParseError) )
+    lambda { scope.function_dirtree(['/usr/share/puppet', 'usr/share']) }.should( raise_error(Puppet::ParseError) )
   end
 
   it "should return an array of the posix directory tree" do

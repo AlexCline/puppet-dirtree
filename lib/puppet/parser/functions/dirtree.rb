@@ -26,7 +26,7 @@ from the resulting array.
     EOS
   ) do |arguments|
     path = arguments[0]
-    exclude = arguments[1] || ''
+    exclude = arguments[1] || '/'
 
     unless path.is_a?(String)
       raise Puppet::ParseError, "dirtree(): expected first argument to be a String, got #{path.inspect}"
@@ -41,6 +41,13 @@ from the resulting array.
 
     unless is_posix or is_windows
       raise Puppet::ParseError, "dirtree(): #{path.inspect} is not an absolute path."
+    end
+
+    ex_posix = Puppet::Util.absolute_path?(exclude, :posix)
+    ex_windows = Puppet::Util.absolute_path?(exclude, :windows)
+
+    unless ex_posix or ex_windows
+      raise Puppet::ParseError, "dirtree(): #{exclude.inspect} is not an absolute path."
     end
 
     sep = is_posix ? '/' : '\\'
