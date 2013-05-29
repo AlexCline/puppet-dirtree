@@ -1,5 +1,5 @@
 name    'AlexCline-dirtree'
-version '0.1.1'
+version '0.2.0'
 author 'Alex Cline <alex.cline@gmail.com>'
 license 'Apache License, Version 2.0'
 summary 'The dirtree function builds an array of directories from a full directory path.  The array can then be used to ensure all the required directories in a path are managed by puppet.'
