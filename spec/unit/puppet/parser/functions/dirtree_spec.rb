@@ -56,4 +56,11 @@ describe "the dirtree function" do
     result.should(match_array(['/var/lib/puppet', '/var/lib/puppet/ssl']))
   end
 
+  it "should return an array of all paths given an array of paths without the specified directory" do
+    result = scope.function_dirtree([['/usr/share/puppet', '/var/lib/puppet/ssl', '/var/lib/puppet/modules'], '/var/lib'])
+    result.should(match_array(['/usr', '/usr/share', '/usr/share/puppet',
+                                '/var/lib/puppet', '/var/lib/puppet/ssl',
+                                '/var/lib/puppet/modules']))
+  end
+
 end
