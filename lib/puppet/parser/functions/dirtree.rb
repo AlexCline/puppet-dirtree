@@ -40,6 +40,8 @@ from the resulting array.
       raise Puppet::ParseError, "dirtree(): #{exclude.inspect} is not an absolute exclusion path."
     end
 
+    paths = [ paths ] if paths.is_a?(String)
+
     result = []
     paths.each do |path|
       is_posix = Puppet::Util.absolute_path?(path, :posix)
