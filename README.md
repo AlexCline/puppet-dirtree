@@ -4,7 +4,10 @@ dirtree
 *This module provides the `dirtree` function.*
 
 The `dirtree` function accepts a string containing an absolute directory path
-and will return an array of the tree containing all the folders of that path.
+and will return an array of the tree containing all the directories of that path.
+
+The first parameter can also be an array of absolute directory paths, which will
+be transformed into an array of all trees containing all directories in the paths.
 
 An optional second parameter can be supplied that contains a path to exclude
 from the resulting array.
@@ -19,6 +22,11 @@ Examples
 
     dirtree('C:\\windows\\system32\\drivers')
     Will return: ["C:\\windows", "C:\\windows\\system32", "C:\\windows\\system32\\drivers"]
+
+    dirtree(['/usr/share/puppet', '/var/lib/puppet/ssl', '/var/lib/puppet/modules'])
+    Will return: ['/usr', '/usr/share', '/usr/share/puppet',
+                  '/var', '/var/lib', '/var/lib/puppet', '/var/lib/puppet/ssl',
+                  '/var/lib/puppet/modules']
 
     dirtree('/usr/share/puppet', '/usr')
     Will return: ['/usr/share', '/usr/share/puppet']
@@ -42,9 +50,11 @@ create new resources with the names specified if they don't already exist.
 Changes
 ------
 
+dirtree v0.2.1
+- Added the ability to pass an array of paths.  Thanks to [Ben Ford](https://github.com/binford2k)
+
 dirtree v0.2.0
 - Added optional second parameter specifying portion of the path to exclude.
-
 
 Support
 -------
